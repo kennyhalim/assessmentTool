@@ -41,7 +41,7 @@ async function handleSubmit(event) {
         const newWorkerAssessmentId = body.new_worker_assessment_id;
 
         // Open supervisor.html in a new tab
-        window.open(`supervisor.html?worker_assessment_id=${newWorkerAssessmentId}`, '_blank');
+        //window.open(`supervisor.html?worker_assessment_id=${newWorkerAssessmentId}`, '_blank');
 
         // Redirect the current page to results.html
         window.location.href = `results.html?checked=${checkedQuestions.join(',')}`;

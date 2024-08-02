@@ -54,7 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Get worker_assessment_id from URL
     const urlParams = new URLSearchParams(window.location.search);
-    workerAssessmentId = urlParams.get('worker_assessment_id');
+    //workerAssessmentId = urlParams.get('worker_assessment_id');
+    workerAssessmentId = 19;
     if (workerAssessmentId) {
         document.getElementById('workerAssessmentId').textContent = workerAssessmentId;
     } else {
@@ -94,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
         const jsonBody = {
             employee_id: "333",
-            worker_assessment_id: workerAssessmentId,
+            worker_assessment_id: "19",
             question_one_answer: getQuestionAnswer('q1'),
             question_two_answer: getQuestionAnswer('q2'),
             question_three_answer: getQuestionAnswer('q3'),
