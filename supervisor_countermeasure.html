@@ -11,8 +11,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h1 class="text-center mb-4">Individual Controls & Operational Countermeasures</h1>
-                <p class="mb-4"><strong>Supervisor Assessment ID:</strong> <span id="supervisorAssessmentId"></span></p>
+                <h3 class="text-center mb-4">Individual Controls & Operational Countermeasures</h3>
+                <p class="mb-4"><strong>Supervisor Assessment ID:</strong> Enigma Doe</p>
                 <p class="mb-4"><strong>Assessment for:</strong> Jane Doe</p>
                 <div class="countermeasures-container">
                     <div class="section maintain-alertness">
@@ -20,7 +20,7 @@
                         <ul class="countermeasures-list">
                             <li><label><input type="checkbox" id="q1"> Increase hydration</label></li>
                             <li><label><input type="checkbox" id="q2"> Avoid sugary drinks & snacks</label></li>
-                            <li><label><input type="checkbox" id="q3"> Eat high protein, low carbs (e.g., energy bar/nuts/yogurt/peanut butter = LOW GLYCEMIC FOODS)</label></li>
+                            <li><label><input type="checkbox" id="q3"> Eat high protein, low carbs (e.g., energy bar/nuts/yogurt/peanut butter = low glycemic foods)</label></li>
                             <li><label><input type="checkbox" id="q4"> Try stimulating aromas (e.g., spearmint gum/peppermint tea/citrus fruits/eucalyptus oil)</label></li>
                         </ul>
                     </div>
@@ -123,7 +123,7 @@
         
                 } catch (error) {
                     console.error('Error:', error);
-                    alert('An error occurred while submitting the countermeasures. Please try again.');
+                    window.location.href = 'error.html';
                 }
             }
         });
