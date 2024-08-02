@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Individual Controls & Operational Countermeasures</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="countermeasure.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="text-center mb-4">Individual Controls & Operational Countermeasures</h1>
+                <p class="mb-4"><strong>Supervisor Assessment ID:</strong> <span id="supervisorAssessmentId"></span></p>
+                <div class="countermeasures-container">
+                    <div class="section maintain-alertness">
+                        <h2>Maintain Alertness & Safety</h2>
+                        <ul class="countermeasures-list">
+                            <li><label><input type="checkbox" id="q1"> Increase hydration</label></li>
+                            <li><label><input type="checkbox" id="q2"> Avoid sugary drinks & snacks</label></li>
+                            <li><label><input type="checkbox" id="q3"> Eat high protein, low carbs (e.g., energy bar/nuts/yogurt/peanut butter = LOW GLYCEMIC FOODS)</label></li>
+                            <li><label><input type="checkbox" id="q4"> Try stimulating aromas (e.g., spearmint gum/peppermint tea/citrus fruits/eucalyptus oil)</label></li>
+                        </ul>
+                    </div>
+                    <div class="section mild-to-moderate">
+                        <h2>Mild to Moderate</h2>
+                        <ul class="countermeasures-list">
+                            <li><label><input type="checkbox" id="q5"> Strategic use of caffeine to increase alertness</label></li>
+                            <li><label><input type="checkbox" id="q6"> Increase interaction with co-workers</label></li>
+                            <li><label><input type="checkbox" id="q7"> Increase physical activity (walk/gym/stationary bike)</label></li>
+                            <li><label><input type="checkbox" id="q8"> Use of light exposure/therapy to reduce short term circadian misalignment (where available)</label></li>
+                        </ul>
+                    </div>
+                    <div class="section moderate-to-severe">
+                        <h2>Moderate to Severe</h2>
+                        <ul class="countermeasures-list">
+                            <li><label><input type="checkbox" id="q9"> Increase check-in frequency when working alone</label></li>
+                            <li><label><input type="checkbox" id="q10"> Utilize safety/process checklists to minimize errors</label></li>
+                            <li><label><input type="checkbox" id="q11"> Defer to a second opinion / ask coworker to double check you work</label></li>
+                            <li><label><input type="checkbox" id="q12"> Consider alternatives to driving home</label></li>
+                            <li><label><input type="checkbox" id="q13"> Delay decision-making where appropriate</label></li>
+                        </ul>
+                    </div>
+                    <div class="section severe">
+                        <h2>Severe</h2>
+                        <ul class="countermeasures-list">
+                            <li><label><input type="checkbox" id="q14"> Take a strategic Rest Break / Nap</label></li>
+                            <li><label><input type="checkbox" id="q15"> Switch up work tasks or functions</label></li>
+                            <li><label><input type="checkbox" id="q16"> Find alternatives to driving home</label></li>
+                        </ul>
+                    </div>
+                    <button id="submitCountermeasures" class="btn btn-primary mt-3">Submit Countermeasures</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const supervisorAssessmentId = urlParams.get('supervisor_assessment_id');
+            
+            if (supervisorAssessmentId) {
+                document.getElementById('supervisorAssessmentId').textContent = supervisorAssessmentId;
+            } else {
+                document.getElementById('supervisorAssessmentId').textContent = 'Not provided';
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const supervisorAssessmentId = urlParams.get('supervisor_assessment_id');
+            
+            if (supervisorAssessmentId) {
+                document.getElementById('supervisorAssessmentId').textContent = supervisorAssessmentId;
+            } else {
+                document.getElementById('supervisorAssessmentId').textContent = 'Not provided';
+            }
+        
+            // Add event listener for the submit button
+            document.getElementById('submitCountermeasures').addEventListener('click', submitCountermeasures);
+        
+            async function submitCountermeasures() {
+                const jsonBody = {
+                    supervisor_assessment_id: supervisorAssessmentId,
+                    question_one_answer: document.getElementById('q1').checked ? 1 : 0,
+                    question_two_answer: document.getElementById('q2').checked ? 1 : 0,
+                    question_three_answer: document.getElementById('q3').checked ? 1 : 0,
+                    question_four_answer: document.getElementById('q4').checked ? 1 : 0,
+                    question_five_answer: document.getElementById('q5').checked ? 1 : 0,
+                    question_six_answer: document.getElementById('q6').checked ? 1 : 0,
+                    question_seven_answer: document.getElementById('q7').checked ? 1 : 0,
+                    question_eight_answer: document.getElementById('q8').checked ? 1 : 0,
+                    question_nine_answer: document.getElementById('q9').checked ? 1 : 0,
+                    question_ten_answer: document.getElementById('q10').checked ? 1 : 0,
+                    question_eleven_answer: document.getElementById('q11').checked ? 1 : 0,
+                    question_twelve_answer: document.getElementById('q12').checked ? 1 : 0,
+                    question_thirteen_answer: document.getElementById('q13').checked ? 1 : 0,
+                    question_fourteen_answer: document.getElementById('q14').checked ? 1 : 0,
+                    question_fifteen_answer: document.getElementById('q15').checked ? 1 : 0,
+                    question_sixteen_answer: document.getElementById('q16').checked ? 1 : 0
+                };
+        
+                try {
+                    const response = await fetch('https://nk3h4xboqd.execute-api.us-east-2.amazonaws.com/v1/assessment/registerAssessmentCountermeasure', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(jsonBody)
+                    });
+        
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+        
+                    const data = await response.json();
+                    console.log('API Response:', data);
+                    alert('Countermeasures submitted successfully!');
+        
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred while submitting the countermeasures. Please try again.');
+                }
+            }
+        });
+        </script>
+</body>
+</html>

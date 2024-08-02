@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+h1 {
+    color: #2c3e50;
+}
+
+.table {
+    background-color: #fff;
+    table-layout: fixed;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    text-align: left;
+    word-wrap: break-word;
+    padding: 20px; 
+}
+
+.response-1 {
+    background-color: #d4edda;
+}
+
+.response-3 {
+    background-color: #fff3cd;
+}
+
+.response-5 {
+    background-color: #f8d7da;
+}
+
+.total-row {
+    font-weight: bold;
+}
+
+#totalScore {
+    font-size: 1.2em;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+    .table {
+        font-size: 0.9em;
+    }
+    
+    .table th, .table td {
+        padding: 10px; 
+    }
+}
+
+#responseAction {
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#responseAction h2, #responseAction h3 {
+    margin-bottom: 10px;
+}

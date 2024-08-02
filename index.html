@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatigue Assessment Tool</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <h1 class="text-center mb-4">Fatigue Assessment Tool</h1>
+                <div class="question-container">
+                    <form id="fatigueForm" onsubmit="return handleSubmit(event)">
+                        <div class="mb-4">
+                            <div class="question-wrapper">
+                                <label class="question" for="q1">Have I had less than 5 hours sleep in 
+                                    the past 24 hours?</label>
+                                <input class="form-check-input" type="checkbox" id="q1">
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="question-wrapper">
+                                <label class="question" for="q2">Have I had less than 12 hours sleep in 
+                                    the past 48 hours?</label>
+                                <input class="form-check-input" type="checkbox" id="q2">
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="question-wrapper">
+                                <label class="question" for="q3">Was the quality of my sleep less than 
+                                    adequate?</label>
+                                <input class="form-check-input" type="checkbox" id="q3">
+                            </div>
+                            <div class="sub-question">
+                                - Did you have a problem falling or staying asleep?<br>
+                                - Did you wake up feeling unrefreshed or groggy?
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="question-wrapper">
+                                <label class="question" for="q4">By the time my shift ends today, will I 
+                                    have been awake for 17 consecutive 
+                                    hours or more?</label>
+                                <input class="form-check-input" type="checkbox" id="q4">
+                            </div>
+                            <div class="sub-question">
+                                Start calculating how long you've been awake based on when you woke up. If you had a nap of at least 2 hours or more, calculate from after the nap.
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="question-wrapper">
+                                <label class="question" for="q5">Have I exhibited  3 or more  of these
+                                    symptoms in the past 15 minutes?</label>
+                                <input class="form-check-input" type="checkbox" id="q5">
+                            </div>
+                            <div class="sub-question">
+                                - Yawning and lack of energy<br>
+                                - Heavy limbs<br>
+                                - Slowed movements or reactions<br>
+                                - Poor hand-eye coordination<br>
+                                - Difficulty concentrating<br>
+                                - Difficulty remembering tasks<br>
+                                - Forgetting procedures<br>
+                                - Quieter or withdrawn than usual<br>
+                                - Rubbing eyes or blurred vision<br>
+                                - Slurred or garbled speech<br>
+                                - Failing to communicate important information<br>
+                                - Failing to anticipate events or notice hazards<br>
+                                - Increased stress, anxiety, or irritability<br>
+                                - Impatience or decreased tolerance
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="question-wrapper">
+                                <label class="question" for="q6">Have I exhibited 1 or more of these 
+                                    symptoms?</label>
+                                <input class="form-check-input" type="checkbox" id="q6">
+                            </div>
+                            <div class="sub-question">
+                                - Heavy or drooping eyelids<br>
+                                - Head dropping or bobbing<br>
+                                - Drifting off or microsleeps<br>
+                                - Poor decision making<br>
+                                - Increase in risk taking behaviour<br>
+                                - Making errors<br>
+                                - Impaired judgment or problem-solving ability<br>
+                                - Ignoring procedures<br>
+                                - Uncontrolled temper or aggression<br>
+                                - Feeling overwhelmed
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
