@@ -119,7 +119,7 @@
         
                     const data = await response.json();
                     console.log('API Response:', data);
-                    alert('Countermeasures submitted successfully!');
+                    window.location.href = 'thank_you.html';
         
                 } catch (error) {
                     console.error('Error:', error);
