@@ -43,6 +43,12 @@ async function handleSubmit(event) {
         // Open supervisor.html in a new tab
         //window.open(`supervisor.html?worker_assessment_id=${newWorkerAssessmentId}`, '_blank');
 
+        // Generate the supervisor URL
+        const supervisorUrl = `${window.location.origin}/supervisor.html?worker_assessment_id=${newWorkerAssessmentId}`;
+
+        // Send email using SMTP.js
+        await sendEmail(supervisorUrl);
+
         // Redirect the current page to results.html
         window.location.href = `results.html?checked=${checkedQuestions.join(',')}`;
 
@@ -52,4 +58,27 @@ async function handleSubmit(event) {
     }
 
     return false;
+}
+
+async function sendEmail(supervisorUrl) {
+    const emailTo = 'tenvosai@gmail.com';
+    const emailSubject = 'New Worker Assessment';
+    const emailBody = `A new worker assessment has been submitted. Please review it at: ${supervisorUrl}`;
+
+    try {
+        await Email.send({
+            Host: "smtp.elasticemail.com",
+            Username : "tenvosai@gmail.com",
+            Password : "5E2CF5757911951698CC50D55E09CA53DBD8",
+            To: emailTo,
+            From: "tenvosai@gmail.com",
+            Subject: emailSubject,
+            Body: emailBody
+        });
+        console.log('Email sent successfully');
+        alert("successful");
+    } catch (error) {
+        console.error('Error sending email:', error);
+        alert(error);
+    }
 }
