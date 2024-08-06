@@ -8,15 +8,21 @@
     <link href="supervisor_styles.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="mb-4">Worker Fatigue Assessment Questions Form (WFAQ) Response Actions</h1>
-        <div id="responseAction" class="p-4">
+    <div class="container">
+       <div class="row justify-content-center">
+       <div class="col-md-8 col-lg-6">
+        <h1 class="text-center mb-4">Worker Fatigue Assessment Questions Form (WFAQ) Response Actions</h1>
+       
+        <div id="responseAction" class="question-container p-4" style="border-radius: 18px;">
             <h2>Risk: <span id="riskLevel"></span></h2>
             <h3>Response/Action:</h3>
             <p id="responseText"></p>
         </div>
+      
         <a href="supervisor.html" class="btn btn-primary mt-3">Back to Assessment</a>
         <button id="countermeasureButton" class="btn btn-primary mt-3">Go to Countermeasure</button>
+        </div>
+        </div>
     </div>
     <script src="supervisor_result.js"></script>
     <script>
