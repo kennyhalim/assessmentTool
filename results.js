@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         countermeasures = [
             "Increase hydration",
             "Avoid sugary drinks & snacks",
-            "Eat high protein, low carbs (e.g., energy bar/nuts/yogurt/peanut butter = LOW GLYCEMIC FOODS)",
+            "Eat high protein, low carbs (e.g., energy bar/nuts/yogurt/peanut butter = low glycemic foods)",
             "Try stimulating aromas (e.g., spearmint gum/peppermint tea/citrus fruits/eucalyptus oil)"
         ];
     } else if (checkedQuestions.includes(4) && !checkedQuestions.includes(5) && !checkedQuestions.includes(6)) {

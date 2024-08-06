@@ -1,12 +1,21 @@
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
+    background-color: #f5f5f7;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    color: #1d1d1f;
+}
+
+.container {
+    max-width: 2500px;
+    padding-top: 60px;
 }
 
 h1 {
-    color: #2c3e50;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #1d1d1f;
+    margin-bottom: 2rem;
 }
+
 
 .table {
     background-color: #fff;
@@ -36,6 +45,16 @@ h1 {
     font-weight: bold;
 }
 
+.question-container {
+    background-color: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    padding: 40px;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+
 #totalScore {
     font-size: 1.2em;
 }
@@ -63,6 +82,7 @@ input[type="checkbox"] {
         padding: 10px; 
     }
 }
+
 
 #responseAction {
     border-radius: 5px;
