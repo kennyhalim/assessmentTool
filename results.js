@@ -10,10 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
         title = "Maintain Alertness & Safety";
         severityClass = 'alert-safe';
         countermeasures = [
-            "Increase hydration",
-            "Avoid sugary drinks & snacks",
-            "Eat high protein, low carbs (e.g., energy bar/nuts/yogurt/peanut butter = low glycemic foods)",
-            "Try stimulating aromas (e.g., spearmint gum/peppermint tea/citrus fruits/eucalyptus oil)"
             "Select the appropriate operational countermeasures strategies to ensure you get through the shift alert and safely."
         ];
     } else if (checkedQuestions.includes(4) && !checkedQuestions.includes(5) && !checkedQuestions.includes(6)) {
