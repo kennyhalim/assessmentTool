@@ -44,7 +44,7 @@ async function handleSubmit(event) {
         //window.open(`supervisor.html?worker_assessment_id=${newWorkerAssessmentId}`, '_blank');
 
         // Generate the supervisor URL
-        const supervisorUrl = `${window.location.origin}/assessmentTool/supervisor.html?worker_assessment_id=${newWorkerAssessmentId}`;
+        const supervisorUrl = `${window.location.origin}/supervisor.html?worker_assessment_id=${newWorkerAssessmentId}`;
 
         // Send email using SMTP.js
         await sendEmail(supervisorUrl);
