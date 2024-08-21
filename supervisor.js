@@ -53,12 +53,22 @@ document.addEventListener('DOMContentLoaded', function() {
     let workerAssessmentId;
     let employeeId;
 
+    // Mapping of employee IDs to names
+    const employeeMapping = {
+        '333': 'Jane Doe',
+        '334': 'Lloyd Worth',
+        '335': 'Bob Jones',
+        '336': 'Testy Tester'
+        // Add more mappings as needed
+    };
+
     // Get worker_assessment_id and employee_id from URL
     const urlParams = new URLSearchParams(window.location.search);
     
     // Retrieve worker_assessment_id from the URL
     workerAssessmentId = urlParams.get('worker_assessment_id');
     console.log("Worker Assessment ID:", workerAssessmentId);
+    
     // Retrieve employee_id from the URL
     employeeId = urlParams.get('employee_id');
 
@@ -71,16 +81,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Display the employee_id and extract the name to display on the page
     if (employeeId) {
+        // Set the employee ID on the page
         document.getElementById('employeeId').textContent = employeeId;
 
-        // Extract and display the employee name
-        const employeeName = employeeId.split(' - ')[1]; // Extract the name from the "employee_id - name" string
+        // Use the mapping to find the employee name
+        const employeeName = employeeMapping[employeeId]; // Look up the name using the ID
         if (employeeName) {
             document.getElementById('employeeName').textContent = employeeName;
         } else {
             document.getElementById('employeeName').textContent = 'Name not found';
         }
     } else {
+        // Fallback if employeeId is not found or not provided
         document.getElementById('employeeId').textContent = 'Not provided';
         document.getElementById('employeeName').textContent = 'Not provided';
     }
