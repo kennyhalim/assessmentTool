@@ -11,8 +11,12 @@ async function handleSubmit(event) {
         return false;
     }
 
+    // Get the selected employee_id from the dropdown
+    const employeeIdSelect = document.getElementById('employeeId');
+    const employeeId = employeeIdSelect.value;
+
     const answers = {
-        employee_id: "333",
+        employee_id: employeeId,  // Use the selected employee_id
         question_one_answer: document.getElementById('q1').checked ? 1 : 0,
         question_two_answer: document.getElementById('q2').checked ? 1 : 0,
         question_three_answer: document.getElementById('q3').checked ? 1 : 0,
@@ -40,14 +44,8 @@ async function handleSubmit(event) {
         const body = JSON.parse(data.body);
         const newWorkerAssessmentId = body.new_worker_assessment_id;
 
-        // Open supervisor.html in a new tab
-        //window.open(`supervisor.html?worker_assessment_id=${newWorkerAssessmentId}`, '_blank');
-
-        // Generate the supervisor URL
-        const supervisorUrl = `${window.location.origin}/supervisor.html?worker_assessment_id=${newWorkerAssessmentId}`;
-
-        // Send email using SMTP.js
-        await sendEmail(supervisorUrl);
+        // Open supervisor.html in a new tab, passing both worker_assessment_id and employee_id
+        window.open(`supervisor.html?worker_assessment_id=${newWorkerAssessmentId}&employee_id=${employeeId}`, '_blank');
 
         // Redirect the current page to results.html
         window.location.href = `results.html?checked=${checkedQuestions.join(',')}`;

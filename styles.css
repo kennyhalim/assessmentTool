@@ -19,7 +19,7 @@ h1 {
 .question-container {
     background-color: #fff;
     border-radius: 18px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     padding: 40px;
     margin-bottom: 30px;
     transition: all 0.3s ease;
@@ -70,7 +70,7 @@ h1 {
 }
 
 .form-check-input:focus {
-    box-shadow: 0 0 0 0.25rem rgba(0,113,227,0.25);
+    box-shadow: 0 0 0 0.25rem rgba(0, 113, 227, 0.25);
 }
 
 body::before {
@@ -80,7 +80,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
+    background-image:
         radial-gradient(circle at 25px 25px, #e3e3e3 2%, transparent 2%),
         radial-gradient(circle at 75px 75px, #e3e3e3 2%, transparent 2%);
     background-size: 100px 100px;
