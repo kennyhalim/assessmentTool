@@ -27,7 +27,16 @@
     <script src="supervisor_result.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            let workerAssessmentId;
+            let employeeName;
+            let employeeId;
+
+            // Get worker_assessment_id, employee_name, and employee_id from URL
             const urlParams = new URLSearchParams(window.location.search);
+            workerAssessmentId = urlParams.get('worker_assessment_id');
+            employeeName = urlParams.get('employee_name');
+            employeeId = urlParams.get('employee_id');
+            const score = parseInt(urlParams.get('score'));
             const supervisorAssessmentId = urlParams.get('supervisor_assessment_id');
         
             const countermeasureButton = document.getElementById('countermeasureButton');
@@ -35,7 +44,7 @@
             if (countermeasureButton) {
                 countermeasureButton.addEventListener('click', function() {
                     if (supervisorAssessmentId) {
-                        window.location.href = `supervisor_countermeasure.html?supervisor_assessment_id=${supervisorAssessmentId}`;
+                        window.location.href = `supervisor_countermeasure.html?supervisor_assessment_id=${supervisorAssessmentId}&employee_name=${encodeURIComponent(employeeName)}&employee_id=${employeeId}`;  
                     } else {
                         console.error('Supervisor Assessment ID not found');
                         alert('Error: Supervisor Assessment ID not found. Please try again.');

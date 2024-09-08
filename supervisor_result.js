@@ -2,8 +2,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const responseActionDiv = document.getElementById('responseAction');
     const riskLevelElement = document.getElementById('riskLevel');
     const responseTextElement = document.getElementById('responseText');
+    let workerAssessmentId;
+    let employeeName;
+    let employeeId;
 
+    // Get worker_assessment_id, employee_name, and employee_id from URL
     const urlParams = new URLSearchParams(window.location.search);
+    workerAssessmentId = urlParams.get('worker_assessment_id');
+    employeeName = urlParams.get('employee_name');
+    employeeId = urlParams.get('employee_id');
     const score = parseInt(urlParams.get('score'));
 
     function getResponseAction(score) {

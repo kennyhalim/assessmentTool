@@ -12,8 +12,24 @@
         <div class="row justify-content-center">
             <div class="col-md-8 ">
                 <h3 class="text-center mb-4">Individual Controls and Operational Countermeasures</h3>
-                <p class="mb-4" hidden><strong>Supervisor Assessment ID:</strong> <span id="supervisorAssessmentId"></span></p>
-                <p class="mb-4"><strong>Assessment for:</strong> <span id="employeeName"></span></p>
+                <div class="mb-4">
+                    <label for="employeeSelect" class="form-label">Select Name:</label>
+                    <select class="form-select" id="employeeSelect" required>
+                        <option value="" selected disabled>Choose an employee</option>
+                        <option value="335" data-name="Tracy Flahr">Tracy Flahr</option>
+                        <option value="336" data-name="Justin Charlton">Justin Charlton</option>
+                        <option value="337" data-name="Dale Sieben">Dale Sieben</option>
+                        <option value="338" data-name="Darryl Unger">Darryl Unger</option>
+                        <option value="339" data-name="John Cole">John Cole</option>
+                        <option value="340" data-name="Tyler Little">Tyler Little</option>
+                        <option value="341" data-name="Neil Sorsdahl">Neil Sorsdahl</option>
+                        <option value="342" data-name="Kevin Dickinson">Kevin Dickinson</option>
+                        <option value="343" data-name="Virginie Caban">Virginie Caban</option>
+                        <option value="344" data-name="Janelle Smiley">Janelle Smiley</option>
+                        <option value="345" data-name="Barb Hall">Barb Hall</option>
+                        <option value="353" data-name="Dan Robertson">Dan Robertson</option>
+                    </select>
+                </div>
                 <div class="countermeasures-container">
                     <div class="section maintain-alertness">
                         <h2>Mild</h2>
@@ -59,29 +75,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const supervisorAssessmentId = urlParams.get('supervisor_assessment_id');
-            const employeeName = urlParams.get('employee_name');
-            const employeeId = urlParams.get('employee_id');
-            
-            if (supervisorAssessmentId) {
-                document.getElementById('supervisorAssessmentId').textContent = supervisorAssessmentId;
-            } else {
-                document.getElementById('supervisorAssessmentId').textContent = 'Not provided';
-            }
+            const employeeSelect = document.getElementById('employeeSelect');
+            const submitButton = document.getElementById('submitCountermeasures');
 
-            if (employeeName) {
-                document.getElementById('employeeName').textContent = decodeURIComponent(employeeName);
-            } else {
-                document.getElementById('employeeName').textContent = 'Not provided';
-            }
+            // Disable submit button initially
+            submitButton.disabled = true;
+
+            // Enable submit button when an employee is selected
+            employeeSelect.addEventListener('change', function() {
+                submitButton.disabled = !this.value;
+            });
 
             // Add event listener for the submit button
-            document.getElementById('submitCountermeasures').addEventListener('click', submitCountermeasures);
+            submitButton.addEventListener('click', submitCountermeasures);
         
             async function submitCountermeasures() {
+                const selectedOption = employeeSelect.options[employeeSelect.selectedIndex];
+                const employeeId = employeeSelect.value;
+                const employeeName = selectedOption.getAttribute('data-name');
+
                 const jsonBody = {
-                    supervisor_assessment_id: supervisorAssessmentId,
+                    supervisor_assessment_id: "99999",
                     employee_id: employeeId,
                     question_one_answer: document.getElementById('q1').checked ? 1 : 0,
                     question_two_answer: document.getElementById('q2').checked ? 1 : 0,
@@ -116,7 +130,7 @@
         
                     const data = await response.json();
                     console.log('API Response:', data);
-                    window.location.href = 'thank_you.html';
+                    window.location.href = `thank_you.html?employee_name=${encodeURIComponent(employeeName)}`;
         
                 } catch (error) {
                     console.error('Error:', error);

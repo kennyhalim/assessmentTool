@@ -11,8 +11,17 @@ async function handleSubmit(event) {
         return false;
     }
 
+    const selectedEmployee = document.getElementById('employeeSelect');
+    const selectedEmployeeId = selectedEmployee.value;
+    const selectedEmployeeName = selectedEmployee.options[selectedEmployee.selectedIndex].getAttribute('data-name');
+
+    if (!selectedEmployeeId) {
+        alert("Please select an employee before submitting.");
+        return false;
+    }
+
     const answers = {
-        employee_id: "333",
+        employee_id: selectedEmployeeId,
         question_one_answer: document.getElementById('q1').checked ? 1 : 0,
         question_two_answer: document.getElementById('q2').checked ? 1 : 0,
         question_three_answer: document.getElementById('q3').checked ? 1 : 0,
@@ -44,13 +53,13 @@ async function handleSubmit(event) {
         //window.open(`supervisor.html?worker_assessment_id=${newWorkerAssessmentId}`, '_blank');
 
         // Generate the supervisor URL
-        const supervisorUrl = `${window.location.origin}/supervisor.html?worker_assessment_id=${newWorkerAssessmentId}`;
-
+        const supervisorUrl = `${window.location.origin}/supervisor.html?worker_assessment_id=${newWorkerAssessmentId}&employee_name=${encodeURIComponent(selectedEmployeeName)}&employee_id=${selectedEmployeeId}`;
+        
         // Send email using SMTP.js
         await sendEmail(supervisorUrl);
 
         // Redirect the current page to results.html
-        window.location.href = `results.html?checked=${checkedQuestions.join(',')}`;
+        window.location.href = `results.html?checked=${checkedQuestions.join(',')}&employee_name=${encodeURIComponent(selectedEmployeeName)}&employee_id=${selectedEmployeeId}`;
 
     } catch (error) {
         console.error('Error:', error);
