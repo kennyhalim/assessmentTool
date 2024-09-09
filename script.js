@@ -44,21 +44,18 @@ async function handleSubmit(event) {
         }
 
         const data = await response.json();
-        
-        // Parse the body string to get the new_worker_assessment_id
+
         const body = JSON.parse(data.body);
         const newWorkerAssessmentId = body.new_worker_assessment_id;
 
         // Open supervisor.html in a new tab
         //window.open(`supervisor.html?worker_assessment_id=${newWorkerAssessmentId}`, '_blank');
 
-        // Generate the supervisor URL
         const supervisorUrl = `${window.location.origin}/supervisor.html?worker_assessment_id=${newWorkerAssessmentId}&employee_name=${encodeURIComponent(selectedEmployeeName)}&employee_id=${selectedEmployeeId}`;
         
         // Send email using SMTP.js
-        await sendEmail(supervisorUrl);
+        await sendEmail(supervisorUrl, selectedEmployeeName);
 
-        // Redirect the current page to results.html
         window.location.href = `results.html?checked=${checkedQuestions.join(',')}&employee_name=${encodeURIComponent(selectedEmployeeName)}&employee_id=${selectedEmployeeId}`;
 
     } catch (error) {
@@ -69,20 +66,32 @@ async function handleSubmit(event) {
     return false;
 }
 
-async function sendEmail(supervisorUrl) {
-    const emailTo = 'tenvosai@gmail.com';
+async function sendEmail(supervisorUrl, selectedEmployeeName) {
+    const emailTo = 'support@tenvos.com';
     const emailSubject = 'New Worker Assessment';
     const emailBody = `A new worker assessment has been submitted. Please review it at: ${supervisorUrl}`;
-
+    //const emailNewBody = `Dear Supervisor,<br><br> ${selectedEmployeeName} has submitted a Fatigue Assessment Form. <br><br> Please review it at: ${supervisorUrl}`;
+    const emailNewBody = `
+        <!DOCTYPE html>
+        <html>
+        <body>
+            <p>Dear Supervisor,</p>
+            <br>
+            <p>${selectedEmployeeName} has submitted a Fatigue Assessment Form.</p>
+            <br>
+            <p>Please <a href="${supervisorUrl}">click here</a> to review it.</p>
+        </body>
+        </html>
+    `;
     try {
         await Email.send({
             Host: "smtp.elasticemail.com",
-            Username : "tenvosai@gmail.com",
-            Password : "5E2CF5757911951698CC50D55E09CA53DBD8",
+            Username : "support@tenvos.com",
+            Password : "19612EBD8C55D58511BD5FC76CC000837454",
             To: emailTo,
-            From: "tenvosai@gmail.com",
+            From: "support@tenvos.com",
             Subject: emailSubject,
-            Body: emailBody
+            Body: emailNewBody
         });
         console.log('Email sent successfully');
     } catch (error) {
