@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supervisor Tool - Worker Fatigue Assessment Questions Form (WFAQ)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="supervisor_style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+    <div class="row justify-content-center">
+    <div class="col-md-10">
+
+    <h1 class="text-center mb-4">Supervisor Tool</h1>
+        <div class="question-container">
+        <h3 class="text-center mb-4"> Worker Fatigue Assessment Questions Form</h3>
+        <p class="text-center mb-4">This tool would be used anytime a worker identifies a fatigue, a co-worker identifies fatigue, a supervisor observes fatigue, a fatigue related error occurs, or an incident occurs.</p>        
+        <form id="fatigueForm">
+            <div class="mb-4">
+                <label for="employeeSelect" class="form-label">Select Name:</label>
+                <select class="form-select" id="employeeSelect" required>
+                    <option value="" selected disabled>Choose an employee</option>
+                    <option value="345" data-name="Barb Hall">Barb Hall</option>
+                    <option value="337" data-name="Dale Sieben">Dale Sieben</option>
+                    <option value="353" data-name="Dan Robertson">Dan Robertson</option>
+                    <option value="338" data-name="Darryl Unger">Darryl Unger</option>
+                    <option value="344" data-name="Janelle Smiley">Janelle Smiley</option>
+                    <option value="339" data-name="John Cole">John Cole</option>
+                    <option value="336" data-name="Justin Charlton">Justin Charlton</option>
+                    <option value="342" data-name="Kevin Dickinson">Kevin Dickinson</option>
+                    <option value="341" data-name="Neil Sorsdahl">Neil Sorsdahl</option>
+                    <option value="335" data-name="Tracy Flahr">Tracy Flahr</option>
+                    <option value="340" data-name="Tyler Little">Tyler Little</option>
+                    <option value="343" data-name="Virginie Caban">Virginie Caban</option>
+                </select>
+            </div>
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width: 35%;">Questions</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Are any signs of fatigue observable?</td>
+                        <td valign="top" align="left" class="response-1">
+                            <div  valign="top"  class="checkbox-wrapper">
+                            
+                                <input  valign="top"  style="margin-top: 1px;" type="checkbox" name="q1" value="1" id="q1-1">
+                        
+                            </div>
+                      
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q1-1">No</label>
+
+                        </td>
+                        <td  valign="top"  class="response-3">
+                            <div class="checkbox-wrapper">
+                                <input  style="margin-top: 1px;" type="checkbox" name="q1" value="3" id="q1-3">
+                            </div>
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q1-3">Yes – a few such as yawning, distraction</label>
+                        </td>
+                        <td  valign="top" class="response-5">
+                            <div class="checkbox-wrapper">
+                                <input  style="margin-top: 1px;" type="checkbox" name="q1" value="5" id="q1-5">
+                            </div>
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q1-5">Yes – several observable signs</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>How are you feeling right now?</td>
+                        <td class="response-1">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="q2" value="1" id="q2-1">
+                            </div>
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q2-1">Very alert – wide awake</label>
+                        </td>
+                        <td class="response-3">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="q2" value="3" id="q2-3">
+                            </div>
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q2-3">A bit tired – effort required to stay awake</label>
+                        </td>
+                        <td class="response-5">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="q2" value="5" id="q2-5">
+                            </div>
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q2-5">Very fatigued - having difficulty staying alert</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Did you get enough sleep in the last 24 hours?</td>
+                        <td class="response-1">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="q3" value="1" id="q3-1">
+                            </div>
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q3-1">Yes – I got an ideal amount of sleep</label>
+                        </td>
+                        <td class="response-3">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="q3" value="3" id="q3-3">
+                            </div>
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q3-3">Yes – but not an ideal amount of sleep</label>
+                        </td>
+                        <td class="response-5">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="q3" value="5" id="q3-5">
+                            </div>
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q3-5">No</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>How good of quality was that sleep?</td>
+                        <td class="response-1">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="q4" value="1" id="q4-1">
+                            </div>
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q4-1">Good</label>
+                        </td>
+                        <td class="response-3">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="q4" value="3" id="q4-3">
+                            </div>
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q4-3">Average</label>
+                        </td>
+                        <td class="response-5">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="q4" value="5" id="q4-5">
+                            </div>
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q4-5">Poor</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Were you suffering any signs of fatigue immediately prior to and/or during this shift (eg. difficulty concentrating, zoning out, micro sleeps)</td>
+                        <td class="response-1">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="q5" value="1" id="q5-1">
+                            </div>
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q5-1">No</label>
+                        </td>
+                        <td class="response-3">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="q5" value="3" id="q5-3">
+                            </div>
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q5-3">Some, only minor</label>
+                        </td>
+                        <td class="response-5">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="q5" value="5" id="q5-5">
+                            </div>
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q5-5">Yes</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Do you feel that you are fit for work?</td>
+                        <td class="response-1">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="q6" value="1" id="q6-1">
+                            </div>
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q6-1">Yes</label>
+                        </td>
+                        <td class="response-3">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="q6" value="3" id="q6-3">
+                            </div>
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q6-3">Yes - with additional risk controls</label>
+                        </td>
+                        <td class="response-5">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="q6" value="5" id="q6-5">
+                            </div>
+                            <label style="font-size: 0.95rem; margin-left: 10px; margin-top: 0px; margin-bottom: 5px; " for="q6-5">No</label>
+                        </td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="3">Total Score (Minimum score 6, maximum score 30)</td>
+                        <td id="totalScore">/30</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p align="center">
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </p>
+        </form>
+        
+    </div>
+<div><p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="supervisor_form.js"></script>
+</body>
+</html>
