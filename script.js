@@ -49,7 +49,7 @@ async function handleSubmit(event) {
         const body = JSON.parse(data.body);
         const newWorkerAssessmentId = body.new_worker_assessment_id;
 
-        
+        // Open supervisor.html in a new tab
         //window.open(`supervisor.html?worker_assessment_id=${newWorkerAssessmentId}`, '_blank');
 
         // Generate the supervisor URL
