@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supervisor Tool - Worker Fatigue Assessment Questions Form (WFAQ)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="supervisor_style.css" rel="stylesheet">
 </head>
@@ -21,7 +22,7 @@
                 <label for="employeeSelect" class="form-label">Select Name:</label>
                 <select class="form-select" id="employeeSelect" required>
                     <option value="" selected disabled>Choose an employee</option>
-                    <option value="345" data-name="Barb Hall">Barb Hall</option>
+                    <!-- <option value="345" data-name="Barb Hall">Barb Hall</option>
                     <option value="337" data-name="Dale Sieben">Dale Sieben</option>
                     <option value="353" data-name="Dan Robertson">Dan Robertson</option>
                     <option value="338" data-name="Darryl Unger">Darryl Unger</option>
@@ -33,9 +34,38 @@
                     <option value="354" data-name="Shelley Kiefer">Shelley Kiefer</option>
                     <option value="335" data-name="Tracy Flahr">Tracy Flahr</option>
                     <option value="340" data-name="Tyler Little">Tyler Little</option>
-                    <option value="343" data-name="Virginie Caban">Virginie Caban</option>
+                    <option value="343" data-name="Virginie Caban">Virginie Caban</option> -->
                 </select>
             </div>
+            <script>
+                // Function to parse CSV and populate dropdown
+                function populateDropdown(data) {
+                    const select = document.getElementById('employeeSelect');
+                    
+                    data.forEach(row => {
+                        if (row.employee_id && row.first_name && row.last_name) {
+                            const option = document.createElement('option');
+                            option.value = row.employee_id;
+                            option.textContent = `${row.first_name} ${row.last_name}`;
+                            option.setAttribute('data-name', `${row.first_name} ${row.last_name}`);
+                            select.appendChild(option);
+                        }
+                    });
+                }
+        
+                // Fetch and parse the CSV file
+                fetch('CarEmployees.csv')
+                    .then(response => response.text())
+                    .then(csv => {
+                        Papa.parse(csv, {
+                            header: true,
+                            complete: function(results) {
+                                populateDropdown(results.data);
+                            }
+                        });
+                    })
+                    .catch(error => console.error('Error fetching or parsing CSV:', error));
+            </script>
             <table class="table table-hover table-bordered">
                 <thead>
                     <tr>

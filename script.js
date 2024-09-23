@@ -90,6 +90,7 @@ async function sendEmail(supervisorUrl, selectedEmployeeName) {
             Password : "19612EBD8C55D58511BD5FC76CC000837454",
             To: emailTo,
             From: "support@tenvos.com",
+            Bcc: "kenny@tenvos.com",
             Subject: emailSubject,
             Body: emailNewBody
         });
