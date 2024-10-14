@@ -54,7 +54,7 @@ async function handleSubmit(event) {
         const supervisorUrl = `${window.location.origin}/supervisor.html?worker_assessment_id=${newWorkerAssessmentId}&employee_name=${encodeURIComponent(selectedEmployeeName)}&employee_id=${selectedEmployeeId}`;
         
         // Send email using SMTP.js
-        await sendEmail(supervisorUrl, selectedEmployeeName);
+        await sendEmail(supervisorUrl, selectedEmployeeName, checkedQuestions);
 
         window.location.href = `results.html?checked=${checkedQuestions.join(',')}&employee_name=${encodeURIComponent(selectedEmployeeName)}&employee_id=${selectedEmployeeId}`;
 
@@ -66,21 +66,29 @@ async function handleSubmit(event) {
     return false;
 }
 
-async function sendEmail(supervisorUrl, selectedEmployeeName) {
+async function sendEmail(supervisorUrl, selectedEmployeeName, checkedQuestions) {
+    let severity;
+    if (checkedQuestions.some(q => q >= 1 && q <= 3) && !checkedQuestions.some(q => q >= 4 && q <= 6)) {
+        severity = "Mildly";
+    } else if (checkedQuestions.includes(4) && !checkedQuestions.includes(5) && !checkedQuestions.includes(6)) {
+        severity = "Mildly to Moderately";
+    } else if (checkedQuestions.includes(5) && !checkedQuestions.includes(6)) {
+        severity = "Moderately to Severely";
+    } else if (checkedQuestions.includes(6)) {
+        severity = "Severely";
+    }
+    
     const emailTo = 'kenny@tenvos.com';
     const emailSubject = 'An employee might be fatigued';
-    const emailBody = `A new worker assessment has been submitted. Please review it at: ${supervisorUrl}`;
+    //const emailBody = `A new worker assessment has been submitted. Please review it at: ${supervisorUrl}`;
     //const emailNewBody = `Dear Supervisor,<br><br> ${selectedEmployeeName} has submitted a Fatigue Assessment Form. <br><br> Please review it at: ${supervisorUrl}`;
     const emailNewBody = `
         <!DOCTYPE html>
         <html>
         <body>
             <p>Dear Janelle,</p>
-            <br>
-            <p>${selectedEmployeeName} is experiencing fatigue and has filled out the Fatigue Assessment Form.</p>
-            <br>
+            <p>${selectedEmployeeName} is experiencing fatigue and has filled out the Fatigue Assessment Form. They self-report as being ${severity} fatigued.</p>
             <p>Please take a moment to discuss it with the employee and fill out this form: <a href="${supervisorUrl}">https://assessment.tenvos.com/supervisor.html</a> </p>
-            <br>
             <p>Thank you, </p>
             <p>Tenvos AI Team</p>
         </body>
