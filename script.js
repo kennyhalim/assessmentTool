@@ -67,8 +67,8 @@ async function handleSubmit(event) {
 }
 
 async function sendEmail(supervisorUrl, selectedEmployeeName) {
-    const emailTo = 'support@tenvos.com';
-    const emailSubject = 'New Worker Assessment';
+    const emailTo = 'kenny@tenvos.com';
+    const emailSubject = 'An employee might be fatigued';
     const emailBody = `A new worker assessment has been submitted. Please review it at: ${supervisorUrl}`;
     //const emailNewBody = `Dear Supervisor,<br><br> ${selectedEmployeeName} has submitted a Fatigue Assessment Form. <br><br> Please review it at: ${supervisorUrl}`;
     const emailNewBody = `
@@ -79,7 +79,7 @@ async function sendEmail(supervisorUrl, selectedEmployeeName) {
             <br>
             <p>${selectedEmployeeName} is experiencing fatigue and has filled out the Fatigue Assessment Form.</p>
             <br>
-            <p>Please take a moment to discuss it with the employee, and fill out this form: <a href="${supervisorUrl}">https://assessment.tenvos.com/supervisor.html</a> </p>
+            <p>Please take a moment to discuss it with the employee and fill out this form: <a href="${supervisorUrl}">https://assessment.tenvos.com/supervisor.html</a> </p>
             <br>
             <p>Thank you, </p>
             <p>Tenvos AI Team</p>
