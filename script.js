@@ -75,7 +75,7 @@ async function sendEmail(supervisorUrl, selectedEmployeeName) {
         <!DOCTYPE html>
         <html>
         <body>
-            <p>Dear Supervisor,</p>
+            <p>Dear Janelle,</p>
             <br>
             <p>${selectedEmployeeName} is experiencing fatigue and has filled out the Fatigue Assessment Form.</p>
             <br>
