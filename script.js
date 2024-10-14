@@ -77,9 +77,12 @@ async function sendEmail(supervisorUrl, selectedEmployeeName) {
         <body>
             <p>Dear Supervisor,</p>
             <br>
-            <p>${selectedEmployeeName} has submitted a Fatigue Assessment Form.</p>
+            <p>${selectedEmployeeName} is experiencing fatigue and has filled out the Fatigue Assessment Form.</p>
             <br>
-            <p>Please <a href="${supervisorUrl}">click here</a> to review it.</p>
+            <p>Please take a moment to discuss it with the employee, and fill out this form: <a href="${supervisorUrl}">https://assessment.tenvos.com/supervisor.html</a> </p>
+            <br>
+            <p>Thank you, </p>
+            <p>Tenvos AI Team</p>
         </body>
         </html>
     `;
