@@ -78,7 +78,8 @@ async function sendEmail(supervisorUrl, selectedEmployeeName, checkedQuestions) 
         severity = "Severely";
     }
     
-    const emailTo = 'kenny@tenvos.com';
+    //const emailTo = 'kenny@tenvos.com';
+    const emailTo = 'janelle.smiley-wiens@novachem.com';
     const emailSubject = 'An employee might be fatigued';
     //const emailBody = `A new worker assessment has been submitted. Please review it at: ${supervisorUrl}`;
     //const emailNewBody = `Dear Supervisor,<br><br> ${selectedEmployeeName} has submitted a Fatigue Assessment Form. <br><br> Please review it at: ${supervisorUrl}`;
@@ -101,7 +102,6 @@ async function sendEmail(supervisorUrl, selectedEmployeeName, checkedQuestions) 
             Password : "19612EBD8C55D58511BD5FC76CC000837454",
             To: emailTo,
             From: "support@tenvos.com",
-            Bcc: "kenny@tenvos.com",
             Subject: emailSubject,
             Body: emailNewBody
         });
