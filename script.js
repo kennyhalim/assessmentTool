@@ -66,6 +66,15 @@ async function handleSubmit(event) {
     return false;
 }
 
+function getTodaysDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    const day = String(today.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+}
+
 async function sendEmail(supervisorUrl, selectedEmployeeName, checkedQuestions) {
     let severity;
     if (checkedQuestions.some(q => q >= 1 && q <= 3) && !checkedQuestions.some(q => q >= 4 && q <= 6)) {
@@ -78,9 +87,10 @@ async function sendEmail(supervisorUrl, selectedEmployeeName, checkedQuestions) 
         severity = "Severely";
     }
     
-    //const emailTo = 'kenny@tenvos.com';
-    const emailTo = 'janelle.smiley-wiens@novachem.com';
-    const emailSubject = 'An employee might be fatigued';
+    const emailTo = 'kenny@tenvos.com';
+    //const emailTo = 'janelle.smiley-wiens@novachem.com';
+    const uniqueId = getTodaysDate();
+    const emailSubject = `An employee might be fatigued (${uniqueId})`;
     //const emailBody = `A new worker assessment has been submitted. Please review it at: ${supervisorUrl}`;
     //const emailNewBody = `Dear Supervisor,<br><br> ${selectedEmployeeName} has submitted a Fatigue Assessment Form. <br><br> Please review it at: ${supervisorUrl}`;
     const emailNewBody = `
