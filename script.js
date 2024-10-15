@@ -66,13 +66,20 @@ async function handleSubmit(event) {
     return false;
 }
 
-function getTodaysDate() {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
-    const day = String(today.getDate()).padStart(2, '0');
+function getCurrentDateTime() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    let hour = now.getHours();
+    const minute = String(now.getMinutes()).padStart(2, '0');
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    
+    hour = hour % 12;
+    hour = hour ? hour : 12; // the hour '0' should be '12'
+    hour = String(hour).padStart(2, '0');
 
-    return `${year}-${month}-${day}`;
+    return `${year}-${month}-${day} ${hour}:${minute} ${ampm}`;
 }
 
 async function sendEmail(supervisorUrl, selectedEmployeeName, checkedQuestions) {
@@ -89,7 +96,7 @@ async function sendEmail(supervisorUrl, selectedEmployeeName, checkedQuestions) 
     
     const emailTo = 'kenny@tenvos.com';
     //const emailTo = 'janelle.smiley-wiens@novachem.com';
-    const uniqueId = getTodaysDate();
+    const uniqueId = getCurrentDateTime();
     const emailSubject = `An employee might be fatigued (${uniqueId})`;
     //const emailBody = `A new worker assessment has been submitted. Please review it at: ${supervisorUrl}`;
     //const emailNewBody = `Dear Supervisor,<br><br> ${selectedEmployeeName} has submitted a Fatigue Assessment Form. <br><br> Please review it at: ${supervisorUrl}`;
