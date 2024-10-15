@@ -54,7 +54,7 @@ async function handleSubmit(event) {
         const supervisorUrl = `${window.location.origin}/supervisor.html?worker_assessment_id=${newWorkerAssessmentId}&employee_name=${encodeURIComponent(selectedEmployeeName)}&employee_id=${selectedEmployeeId}`;
         
         // Send email using SMTP.js
-        await sendEmailToWorker(supervisorUrl, selectedEmployeeName, checkedQuestions);
+        //await sendEmailToWorker(supervisorUrl, selectedEmployeeName, checkedQuestions);
 
         window.location.href = `results.html?checked=${checkedQuestions.join(',')}&employee_name=${encodeURIComponent(selectedEmployeeName)}&employee_id=${selectedEmployeeId}`;
 
