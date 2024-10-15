@@ -87,7 +87,7 @@ async function sendEmail(supervisorUrl, selectedEmployeeName, checkedQuestions) 
         <html>
         <body>
             <p>Dear Janelle,</p>
-            <p>${selectedEmployeeName} is experiencing fatigue and has filled out the Fatigue Assessment Form. They self-report as being ${severity} fatigued.</p>
+            <p>${selectedEmployeeName} might be experiencing fatigue and has filled out the Fatigue Assessment Form. They self-report as being ${severity} fatigued.</p>
             <p>Please take a moment to discuss it with the employee and fill out this form: <a href="${supervisorUrl}">https://assessment.tenvos.com/supervisor.html</a> </p>
             <p>Thank you, </p>
             <p>Tenvos AI Team</p>
