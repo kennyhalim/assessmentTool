@@ -54,7 +54,7 @@ async function handleSubmit(event) {
         const supervisorUrl = `${window.location.origin}/supervisor.html?worker_assessment_id=${newWorkerAssessmentId}&employee_name=${encodeURIComponent(selectedEmployeeName)}&employee_id=${selectedEmployeeId}`;
         
         // Send email using SMTP.js
-        await sendEmail(supervisorUrl, selectedEmployeeName, checkedQuestions);
+        await sendEmailToWorker(supervisorUrl, selectedEmployeeName, checkedQuestions);
 
         window.location.href = `results.html?checked=${checkedQuestions.join(',')}&employee_name=${encodeURIComponent(selectedEmployeeName)}&employee_id=${selectedEmployeeId}`;
 
@@ -68,21 +68,29 @@ async function handleSubmit(event) {
 
 function getCurrentDateTime() {
     const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    let hour = now.getHours();
-    const minute = String(now.getMinutes()).padStart(2, '0');
-    const ampm = hour >= 12 ? 'PM' : 'AM';
     
-    hour = hour % 12;
-    hour = hour ? hour : 12; // the hour '0' should be '12'
-    hour = String(hour).padStart(2, '0');
+    const options = {
+        timeZone: 'America/Edmonton',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    };
 
-    return `${year}-${month}-${day} ${hour}:${minute} ${ampm}`;
+    const formatter = new Intl.DateTimeFormat('en-CA', options);
+    const parts = formatter.formatToParts(now);
+    const dateTimeParts = {};
+
+    for (const part of parts) {
+        dateTimeParts[part.type] = part.value;
+    }
+
+    return `${dateTimeParts.year}-${dateTimeParts.month}-${dateTimeParts.day} ${dateTimeParts.hour}:${dateTimeParts.minute}`;
 }
 
-async function sendEmail(supervisorUrl, selectedEmployeeName, checkedQuestions) {
+async function sendEmailToWorker(supervisorUrl, selectedEmployeeName, checkedQuestions) {
     let severity;
     if (checkedQuestions.some(q => q >= 1 && q <= 3) && !checkedQuestions.some(q => q >= 4 && q <= 6)) {
         severity = "Mildly";
@@ -94,17 +102,28 @@ async function sendEmail(supervisorUrl, selectedEmployeeName, checkedQuestions) 
         severity = "Severely";
     }
     
-    const emailTo = 'kenny@tenvos.com';
-    //const emailTo = 'janelle.smiley-wiens@novachem.com';
+    let emailTo;
+    let supervisorName;
+    if (selectedEmployeeName === "Janelle Smiley") {
+        supervisorName = "Barb";
+        emailTo = 'barb.hall@novachem.com';
+    } else if (selectedEmployeeName === "Dan Robertson") {
+        supervisorName = "Rob";
+        emailTo = 'rob.walsh@novachem.com';
+    } else {
+        supervisorName = "Janelle";
+        emailTo = 'janelle.smiley-wiens@novachem.com';
+    }
+
+    const testEmailTo = 'rima@tenvos.com';
+
     const uniqueId = getCurrentDateTime();
     const emailSubject = `An employee might be fatigued (${uniqueId})`;
-    //const emailBody = `A new worker assessment has been submitted. Please review it at: ${supervisorUrl}`;
-    //const emailNewBody = `Dear Supervisor,<br><br> ${selectedEmployeeName} has submitted a Fatigue Assessment Form. <br><br> Please review it at: ${supervisorUrl}`;
     const emailNewBody = `
         <!DOCTYPE html>
         <html>
         <body>
-            <p>Dear Janelle,</p>
+            <p>Dear ${supervisorName},</p>
             <p>${selectedEmployeeName} might be experiencing fatigue and has filled out the Fatigue Assessment Form. They self-report as being ${severity} fatigued.</p>
             <p>Please take a moment to discuss it with the employee and fill out this form: <a href="${supervisorUrl}">https://assessment.tenvos.com/supervisor.html</a> </p>
             <p>Thank you, </p>
@@ -117,7 +136,7 @@ async function sendEmail(supervisorUrl, selectedEmployeeName, checkedQuestions) 
             Host: "smtp.elasticemail.com",
             Username : "support@tenvos.com",
             Password : "19612EBD8C55D58511BD5FC76CC000837454",
-            To: emailTo,
+            To: testEmailTo,
             From: "support@tenvos.com",
             Subject: emailSubject,
             Body: emailNewBody
